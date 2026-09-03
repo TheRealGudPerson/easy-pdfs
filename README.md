@@ -28,7 +28,7 @@ A modern cross-platform PDF page manager built with:
 
 ## Requirements
 
-Python 3.10 or newer.
+Current requirement is Python 3.14.
 
 ## Manual Installation (requires Python to be installed)
 
