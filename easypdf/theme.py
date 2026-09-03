@@ -1,6 +1,11 @@
 LIGHT_THEME = """
 QMainWindow {
     background: #f5f5f7;
+    color: #222222;
+}
+
+QWidget {
+    color: #222222;
 }
 
 QMenuBar {
@@ -46,6 +51,7 @@ QLabel#SidebarTitle {
 
 QListWidget {
     background: transparent;
+    color: #222222;
     border: none;
     outline: none;
 }
@@ -63,6 +69,7 @@ QListWidget::item:selected {
 QPushButton {
     border: 1px solid #d0d0d5;
     background: #ffffff;
+    color: #222222;
     padding: 8px 13px;
     border-radius: 8px;
 }
@@ -92,12 +99,17 @@ QPushButton#PrimaryButton:hover {
 
 QFrame#PageThumbnail {
     background: #ffffff;
+    color: #222222;
     border: 1px solid #d7d7dc;
     border-radius: 12px;
 }
 
 QFrame#PageThumbnail[selected="true"] {
     border: 3px solid #3478f6;
+}
+
+QFrame#PageThumbnail QLabel {
+    color: #222222;
 }
 
 QLabel#EmptyState {
@@ -109,6 +121,11 @@ QLabel#EmptyState {
 
 DARK_THEME = """
 QMainWindow {
+    background: #1c1c1e;
+    color: #f5f5f7;
+}
+
+QWidget {
     background: #1c1c1e;
     color: #f5f5f7;
 }
@@ -205,8 +222,13 @@ QPushButton#PrimaryButton:hover {
 
 QFrame#PageThumbnail {
     background: #29292b;
+    color: #f5f5f7;
     border: 1px solid #454549;
     border-radius: 12px;
+}
+
+QFrame#PageThumbnail QLabel {
+    color: #f5f5f7;
 }
 
 QFrame#PageThumbnail[selected="true"] {
