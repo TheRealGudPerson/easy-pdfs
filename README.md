@@ -1,31 +1,42 @@
 # PDF Manager
 
-Cross-platform PDF organizer built with Python, PySide6, and PyMuPDF.
+A modern cross-platform PDF page manager built with:
 
-## Phase 1
+- Python
+- PySide6
+- PyMuPDF
 
-- Modern desktop GUI
-- Windows/macOS compatible architecture
-- Add multiple PDFs
-- Drag-and-drop PDF files
-- Document sidebar
+## Features
+
+- Import multiple PDFs
+- Combine any number of PDFs
+- Visual page thumbnails
+- Drag and drop page reordering
+- Move pages between PDFs
+- Multi-page selection
+- Shift-click range selection
+- Ctrl/Cmd-click multi-selection
+- Rotate pages
+- Delete pages
+- Duplicate pages
+- Add blank pages
+- Undo/redo
+- Page preview
+- Drag PDFs directly into the app
 - Light/dark mode
-- Native file picker
-- Basic keyboard shortcuts
+- Windows/macOS compatible
 
-## Run
+## Requirements
 
-```bash
-python -m venv .venv
+Python 3.10 or newer.
 
-# Windows PowerShell
-.venv\Scripts\Activate.ps1
+## Manual Installation (requires Python to be installed)
 
-# macOS
-source .venv/bin/activate
+1. Create a virtual environment: ```python -m venv .venv```
+2. Start the virtual environment:```.venv\Scripts\activate``` for Windows or ```source .venv/bin/activate``` for macOS
+3. Install dependencies: ```pip install -r requirements.txt```
+4. Run: ```
 
-pip install -r requirements.txt
-python app.py
-```
+## Script Installation (requires Python to be installed)
 
-Phase 2 will add PDF page loading, thumbnails, selection, and the page workspace.
+Run ```python installer.py```
