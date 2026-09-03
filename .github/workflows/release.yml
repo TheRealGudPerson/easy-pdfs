@@ -43,6 +43,19 @@ jobs:
         run: |
           pyinstaller --noconfirm --clean EasyPDF.spec
 
+      - name: Verify PyInstaller output
+        shell: powershell
+        run: |
+          Write-Host "Contents of dist:"
+          Get-ChildItem -Path "dist" -Recurse
+
+          if (!(Test-Path "dist\EasyPDF.exe")) {
+            Write-Error "PyInstaller did not create dist\EasyPDF.exe"
+            exit 1
+          }
+
+          Write-Host "PyInstaller output verified."
+
       - name: Build EasyPDF installer
         shell: powershell
         run: |

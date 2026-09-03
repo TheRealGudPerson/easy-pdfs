@@ -13,7 +13,6 @@ AppVersion={#AppVersion}
 AppPublisher={#MyAppPublisher}
 
 DefaultDirName={autopf}\EasyPDF
-
 DefaultGroupName=EasyPDF
 
 OutputDir=output
@@ -29,18 +28,25 @@ ArchitecturesInstallIn64BitMode=x64
 
 DisableProgramGroupPage=yes
 
-UninstallDisplayIcon={app}\EasyPDF.exe
+UninstallDisplayIcon={app}\{#MyAppExeName}
 
 [Files]
-Source: "..\dist\EasyPDF\*"; DestDir: "{app}"; Flags: recursesubdirs ignoreversion
+Source: "..\dist\EasyPDF.exe"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
-Name: "{autoprograms}\EasyPDF"; Filename: "{app}\EasyPDF.exe"
+Name: "{autoprograms}\EasyPDF"
+Filename: "{app}\{#MyAppExeName}"
 
-Name: "{autodesktop}\EasyPDF"; Filename: "{app}\EasyPDF.exe"; Tasks: desktopicon
+Name: "{autodesktop}\EasyPDF"
+Filename: "{app}\{#MyAppExeName}"
+Tasks: desktopicon
 
 [Tasks]
-Name: "desktopicon"; Description: "Create a desktop shortcut"; GroupDescription: "Additional shortcuts:"
+Name: "desktopicon"
+Description: "Create a desktop shortcut"
+GroupDescription: "Additional shortcuts:"
 
 [Run]
-Filename: "{app}\EasyPDF.exe"; Description: "Launch EasyPDF"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\{#MyAppExeName}"
+Description: "Launch EasyPDF"
+Flags: nowait postinstall skipifsilent
