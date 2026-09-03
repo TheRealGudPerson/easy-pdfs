@@ -34,19 +34,11 @@ UninstallDisplayIcon={app}\{#MyAppExeName}
 Source: "..\dist\EasyPDF.exe"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
-Name: "{autoprograms}\EasyPDF"
-Filename: "{app}\{#MyAppExeName}"
-
-Name: "{autodesktop}\EasyPDF"
-Filename: "{app}\{#MyAppExeName}"
-Tasks: desktopicon
+Name: "{autoprograms}\EasyPDF"; Filename: "{app}\{#MyAppExeName}"
+Name: "{autodesktop}\EasyPDF"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
 
 [Tasks]
-Name: "desktopicon"
-Description: "Create a desktop shortcut"
-GroupDescription: "Additional shortcuts:"
+Name: "desktopicon"; Description: "Create a desktop shortcut"; GroupDescription: "Additional shortcuts:"
 
 [Run]
-Filename: "{app}\{#MyAppExeName}"
-Description: "Launch EasyPDF"
-Flags: nowait postinstall skipifsilent
+Filename: "{app}\{#MyAppExeName}"; Description: "Launch EasyPDF"; Flags: nowait postinstall skipifsilent
