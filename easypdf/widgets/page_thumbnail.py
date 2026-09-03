@@ -4,11 +4,12 @@ from PySide6.QtCore import (
     Qt,
     Signal,
 )
+
 from PySide6.QtGui import (
     QDrag,
     QMouseEvent,
-    QPainter,
 )
+
 from PySide6.QtWidgets import (
     QFrame,
     QLabel,
@@ -39,11 +40,14 @@ class PageThumbnail(QFrame):
         self.index = index
         self.page_ref = page_ref
         self.renderer = renderer
-
         self.drag_start_position = QPoint()
 
         self.setObjectName("PageThumbnail")
-        self.setFixedSize(220, 300)
+
+        self.setFixedSize(
+            220,
+            300,
+        )
 
         self.setAttribute(
             Qt.WidgetAttribute.WA_StyledBackground,
@@ -51,11 +55,11 @@ class PageThumbnail(QFrame):
         )
 
         self._build_ui()
-
         self.set_selected(selected)
 
     def _build_ui(self):
         self.layout = QVBoxLayout(self)
+
         self.layout.setContentsMargins(
             10,
             10,
@@ -66,6 +70,7 @@ class PageThumbnail(QFrame):
         self.layout.setSpacing(6)
 
         self.preview = QLabel()
+
         self.preview.setAlignment(
             Qt.AlignmentFlag.AlignCenter
         )
@@ -73,6 +78,7 @@ class PageThumbnail(QFrame):
         self.preview.setMinimumHeight(235)
 
         self.title = QLabel()
+
         self.title.setAlignment(
             Qt.AlignmentFlag.AlignCenter
         )
@@ -99,10 +105,11 @@ class PageThumbnail(QFrame):
 
         self.preview.setPixmap(pixmap)
 
-        if self.page_ref.blank:
-            source = "Blank page"
-        else:
-            source = self.page_ref.source_name
+        source = (
+            "Blank page"
+            if self.page_ref.blank
+            else self.page_ref.source_name
+        )
 
         self.title.setText(
             f"{self.index + 1}  •  {source}"
@@ -122,8 +129,13 @@ class PageThumbnail(QFrame):
         self,
         event: QMouseEvent,
     ):
-        if event.button() == Qt.MouseButton.LeftButton:
-            self.drag_start_position = event.position().toPoint()
+        if (
+            event.button()
+            == Qt.MouseButton.LeftButton
+        ):
+            self.drag_start_position = (
+                event.position().toPoint()
+            )
 
             modifiers = event.modifiers()
 
@@ -171,7 +183,10 @@ class PageThumbnail(QFrame):
         self,
         event: QMouseEvent,
     ):
-        if event.button() == Qt.MouseButton.LeftButton:
+        if (
+            event.button()
+            == Qt.MouseButton.LeftButton
+        ):
             self.double_clicked.emit(
                 self.index
             )
