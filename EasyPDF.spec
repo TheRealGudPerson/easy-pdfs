@@ -6,9 +6,9 @@ from PyInstaller.utils.hooks import collect_submodules
 from PyInstaller.utils.hooks import collect_data_files
 
 
-hiddenimports = collect_submodules("fitz")
+hiddenimports = collect_submodules("pymupdf")
 
-datas = collect_data_files("fitz")
+datas = collect_data_files("pymupdf")
 
 
 if sys.platform == "win32":

@@ -1,6 +1,6 @@
 from functools import lru_cache
 
-import fitz
+import pymupdf
 
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QImage, QPixmap
@@ -14,7 +14,7 @@ class PDFRenderer:
 
     @staticmethod
     def _pixmap_from_page(
-        page: fitz.Page,
+        page: pymupdf.Page,
         rotation: int,
         max_width: int,
         max_height: int,
@@ -29,7 +29,7 @@ class PDFRenderer:
 
         scale = max(scale, 0.05)
 
-        matrix = fitz.Matrix(
+        matrix = pymupdf.Matrix(
             scale,
             scale,
         )
@@ -81,7 +81,7 @@ class PDFRenderer:
         if not page_ref.source_path:
             return QPixmap()
 
-        document = fitz.open(page_ref.source_path)
+        document = pymupdf.open(page_ref.source_path)
 
         try:
             if not (

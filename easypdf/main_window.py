@@ -3,7 +3,7 @@ from __future__ import annotations
 import os
 from pathlib import Path
 
-import fitz
+import pymupdf
 
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QAction, QKeySequence
@@ -980,7 +980,7 @@ class MainWindow(QMainWindow):
 
             return
 
-        output = fitz.open()
+        output = pymupdf.open()
 
         try:
             for page_ref in self.workspace.pages:
@@ -1001,7 +1001,7 @@ class MainWindow(QMainWindow):
                 if not page_ref.source_path:
                     continue
 
-                source = fitz.open(
+                source = pymupdf.open(
                     page_ref.source_path
                 )
 

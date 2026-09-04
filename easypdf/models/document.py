@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from pathlib import Path
 
-import fitz
+import pymupdf
 
 
 @dataclass
@@ -12,7 +12,7 @@ class SourceDocument:
 
     @classmethod
     def from_path(cls, path: str) -> "SourceDocument":
-        document = fitz.open(path)
+        document = pymupdf.open(path)
 
         try:
             page_count = len(document)
