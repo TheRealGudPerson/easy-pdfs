@@ -20,6 +20,8 @@ DefaultDirName={localappdata}\Programs\EasyPDF
 
 DefaultGroupName=EasyPDF
 
+SetupIconFile=..\assets\easypdf.ico
+
 OutputDir=output
 OutputBaseFilename=EasyPDF-Setup-{#AppVersion}
 

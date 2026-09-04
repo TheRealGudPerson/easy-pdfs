@@ -7,7 +7,14 @@ from PyInstaller.utils.hooks import collect_data_files
 
 
 hiddenimports = collect_submodules("fitz")
+
 datas = collect_data_files("fitz")
+
+
+if sys.platform == "win32":
+    app_icon = "assets/easypdf.ico"
+else:
+    app_icon = "assets/easypdf.icns"
 
 
 a = Analysis(
@@ -29,41 +36,28 @@ pyz = PYZ(
 )
 
 
+exe = EXE(
+    pyz,
+    a.scripts,
+    a.binaries,
+    a.datas,
+    [],
+    name="EasyPDF",
+    debug=False,
+    bootloader_ignore_signals=False,
+    strip=False,
+    upx=False,
+    console=False,
+    disable_windowed_traceback=False,
+    argv_emulation=False,
+    icon=app_icon,
+)
+
+
 if sys.platform == "darwin":
     app = BUNDLE(
-        EXE(
-            pyz,
-            a.scripts,
-            a.binaries,
-            a.datas,
-            [],
-            name="EasyPDF",
-            debug=False,
-            bootloader_ignore_signals=False,
-            strip=False,
-            upx=False,
-            console=False,
-            disable_windowed_traceback=False,
-            argv_emulation=False,
-        ),
+        exe,
         name="EasyPDF.app",
-        icon=None,
+        icon=app_icon,
         bundle_identifier="com.easypdf.app",
-    )
-
-else:
-    exe = EXE(
-        pyz,
-        a.scripts,
-        a.binaries,
-        a.datas,
-        [],
-        name="EasyPDF",
-        debug=False,
-        bootloader_ignore_signals=False,
-        strip=False,
-        upx=False,
-        console=False,
-        disable_windowed_traceback=False,
-        argv_emulation=False,
     )
