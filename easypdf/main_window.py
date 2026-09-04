@@ -33,6 +33,7 @@ from easypdf.pdf import PDFRenderer
 from easypdf.theme import (
     DARK_THEME,
     LIGHT_THEME,
+    build_palette,
 )
 from easypdf.widgets import PageGrid
 
@@ -79,7 +80,7 @@ class MainWindow(QMainWindow):
         self.workspace = Workspace()
         self.renderer = PDFRenderer()
 
-        self.dark_mode = False
+        self.dark_mode = self._system_is_dark()
 
         self.undo_stack: list[
             WorkspaceSnapshot
@@ -92,7 +93,7 @@ class MainWindow(QMainWindow):
         self._building_document_list = False
 
         self.setWindowTitle(
-            "PDF Manager"
+            "EasyPDF"
         )
 
         self.resize(
@@ -149,7 +150,7 @@ class MainWindow(QMainWindow):
         side_layout.setSpacing(8)
 
         title = QLabel(
-            "PDF Manager"
+            "EasyPDF"
         )
 
         title.setObjectName(
@@ -487,7 +488,7 @@ class MainWindow(QMainWindow):
         )
 
         about_action = QAction(
-            "About PDF Manager",
+            "About EasyPDF",
             self,
         )
 
@@ -503,9 +504,40 @@ class MainWindow(QMainWindow):
     # Theme
     # ---------------------------------------------------------
 
+    def _system_is_dark(self) -> bool:
+        """
+        Detect the operating system's current color scheme.
+
+        EasyPDF uses this only as its initial theme. Once the
+        user explicitly chooses Dark Mode or Light Mode, the
+        application controls its own appearance.
+        """
+
+        app = QApplication.instance()
+
+        if app is None:
+            return False
+
+        color_scheme = app.styleHints().colorScheme()
+
+        return (
+            color_scheme
+            == Qt.ColorScheme.Dark
+        )
+
+
     def _apply_theme(self):
+        app = QApplication.instance()
+
+        if app is None:
+            return
+
         if self.dark_mode:
-            QApplication.instance().setStyleSheet(
+            app.setPalette(
+                build_palette(True)
+            )
+
+            app.setStyleSheet(
                 DARK_THEME
             )
 
@@ -514,13 +546,18 @@ class MainWindow(QMainWindow):
             )
 
         else:
-            QApplication.instance().setStyleSheet(
+            app.setPalette(
+                build_palette(False)
+            )
+
+            app.setStyleSheet(
                 LIGHT_THEME
             )
 
             self.theme_button.setText(
                 "☾  Dark Mode"
             )
+
 
     def toggle_theme(self):
         self.dark_mode = not self.dark_mode
@@ -1022,9 +1059,9 @@ class MainWindow(QMainWindow):
     def show_quick_guide(self):
         QMessageBox.information(
             self,
-            "PDF Manager Quick Guide",
+            "EasyPDF Quick Guide",
             """
-<b>PDF Manager</b>
+<b>EasyPDF</b>
 
 <b>Import PDFs</b>
 <br>
@@ -1088,9 +1125,9 @@ currently shown in the workspace.
     def show_about(self):
         QMessageBox.about(
             self,
-            "About PDF Manager",
+            "About EasyPDF",
             """
-<b>PDF Manager</b><br>
+<b>EasyPDF</b><br>
 Version 0.3.0<br><br>
 
 A cross-platform PDF page organizer built with

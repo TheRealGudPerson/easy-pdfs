@@ -1,10 +1,21 @@
+from PySide6.QtGui import QColor, QPalette
+
+
 LIGHT_THEME = """
-QMainWindow {
+QMainWindow,
+QWidget {
     background: #f5f5f7;
     color: #222222;
 }
 
-QWidget {
+QScrollArea {
+    background: #f5f5f7;
+    border: none;
+}
+
+QWidget#PageGridContainer,
+QWidget#PageGridViewport {
+    background: #f5f5f7;
     color: #222222;
 }
 
@@ -47,6 +58,7 @@ QFrame#Sidebar {
 QLabel#SidebarTitle {
     font-size: 17px;
     font-weight: 700;
+    color: #222222;
 }
 
 QListWidget {
@@ -89,7 +101,7 @@ QPushButton:disabled {
 
 QPushButton#PrimaryButton {
     background: #222222;
-    color: white;
+    color: #ffffff;
     border: none;
 }
 
@@ -104,15 +116,17 @@ QFrame#PageThumbnail {
     border-radius: 12px;
 }
 
+QFrame#PageThumbnail QLabel {
+    background: transparent;
+    color: #222222;
+}
+
 QFrame#PageThumbnail[selected="true"] {
     border: 3px solid #3478f6;
 }
 
-QFrame#PageThumbnail QLabel {
-    color: #222222;
-}
-
 QLabel#EmptyState {
+    background: transparent;
     color: #777777;
     font-size: 16px;
 }
@@ -120,12 +134,19 @@ QLabel#EmptyState {
 
 
 DARK_THEME = """
-QMainWindow {
+QMainWindow,
+QWidget {
     background: #1c1c1e;
     color: #f5f5f7;
 }
 
-QWidget {
+QScrollArea {
+    background: #1c1c1e;
+    border: none;
+}
+
+QWidget#PageGridContainer,
+QWidget#PageGridViewport {
     background: #1c1c1e;
     color: #f5f5f7;
 }
@@ -228,6 +249,7 @@ QFrame#PageThumbnail {
 }
 
 QFrame#PageThumbnail QLabel {
+    background: transparent;
     color: #f5f5f7;
 }
 
@@ -236,7 +258,107 @@ QFrame#PageThumbnail[selected="true"] {
 }
 
 QLabel#EmptyState {
+    background: transparent;
     color: #999999;
     font-size: 16px;
 }
 """
+
+
+def build_palette(dark: bool) -> QPalette:
+    """
+    Build a complete application palette.
+
+    This prevents Qt from falling back to the operating
+    system's palette for widgets that aren't completely
+    controlled by the stylesheet.
+    """
+
+    palette = QPalette()
+
+    if dark:
+        window = QColor("#1c1c1e")
+        base = QColor("#1c1c1e")
+        alternate_base = QColor("#242426")
+        text = QColor("#f5f5f7")
+        button = QColor("#303032")
+        button_text = QColor("#f5f5f7")
+        highlight = QColor("#3478f6")
+        highlighted_text = QColor("#ffffff")
+        disabled_text = QColor("#777777")
+
+    else:
+        window = QColor("#f5f5f7")
+        base = QColor("#ffffff")
+        alternate_base = QColor("#ededf0")
+        text = QColor("#222222")
+        button = QColor("#ffffff")
+        button_text = QColor("#222222")
+        highlight = QColor("#3478f6")
+        highlighted_text = QColor("#ffffff")
+        disabled_text = QColor("#999999")
+
+    palette.setColor(
+        QPalette.ColorRole.Window,
+        window,
+    )
+
+    palette.setColor(
+        QPalette.ColorRole.Base,
+        base,
+    )
+
+    palette.setColor(
+        QPalette.ColorRole.AlternateBase,
+        alternate_base,
+    )
+
+    palette.setColor(
+        QPalette.ColorRole.Text,
+        text,
+    )
+
+    palette.setColor(
+        QPalette.ColorRole.WindowText,
+        text,
+    )
+
+    palette.setColor(
+        QPalette.ColorRole.Button,
+        button,
+    )
+
+    palette.setColor(
+        QPalette.ColorRole.ButtonText,
+        button_text,
+    )
+
+    palette.setColor(
+        QPalette.ColorRole.Highlight,
+        highlight,
+    )
+
+    palette.setColor(
+        QPalette.ColorRole.HighlightedText,
+        highlighted_text,
+    )
+
+    palette.setColor(
+        QPalette.ColorGroup.Disabled,
+        QPalette.ColorRole.Text,
+        disabled_text,
+    )
+
+    palette.setColor(
+        QPalette.ColorGroup.Disabled,
+        QPalette.ColorRole.WindowText,
+        disabled_text,
+    )
+
+    palette.setColor(
+        QPalette.ColorGroup.Disabled,
+        QPalette.ColorRole.ButtonText,
+        disabled_text,
+    )
+
+    return palette

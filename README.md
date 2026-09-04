@@ -1,4 +1,4 @@
-# PDF Manager
+# EasyPDF
 
 A modern cross-platform PDF page manager built with:
 

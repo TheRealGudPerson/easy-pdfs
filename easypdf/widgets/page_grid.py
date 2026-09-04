@@ -56,6 +56,11 @@ class PageGrid(QScrollArea):
 
         self.container = QWidget()
 
+        self.container = QWidget()
+        self.container.setObjectName(
+            "PageGridContainer"
+        )
+
         self.grid = QGridLayout(
             self.container
         )
@@ -87,6 +92,10 @@ class PageGrid(QScrollArea):
         self.viewport().setAttribute(
             Qt.WidgetAttribute.WA_OpaquePaintEvent,
             False,
+        )
+
+        self.viewport().setObjectName(
+            "PageGridViewport"
         )
 
     # ---------------------------------------------------------
