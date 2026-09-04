@@ -13,8 +13,10 @@ datas = collect_data_files("fitz")
 
 if sys.platform == "win32":
     app_icon = "assets/easypdf.ico"
-else:
+elif sys.platform == "darwin":
     app_icon = "assets/easypdf.icns"
+else:
+    app_icon = None
 
 
 a = Analysis(

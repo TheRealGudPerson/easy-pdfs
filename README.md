@@ -1,10 +1,9 @@
 # EasyPDF
 
-A modern cross-platform PDF page manager built with:
+A modern cross-platform PDF page manager built with Python, PySide6, and PyMuPDF.
 
-- Python
-- PySide6
-- PyMuPDF
+## App Installer (macOS and Windows)
+The latest release can be found [here](https://github.com/TheRealGudPerson/easy-pdfs/releases/latest).
 
 ## Features
 
@@ -30,13 +29,13 @@ A modern cross-platform PDF page manager built with:
 
 Current requirement is Python 3.14.
 
-## Manual Installation (requires Python to be installed)
+## Script Run (requires Python to be installed)
+
+Run ```python installer.py```
+
+## Manual Run (requires Python to be installed)
 
 1. Create a virtual environment: ```python -m venv .venv```
 2. Start the virtual environment:```.venv\Scripts\activate``` for Windows or ```source .venv/bin/activate``` for macOS
 3. Install dependencies: ```pip install -r requirements.txt```
-4. Run: ```
-
-## Script Installation (requires Python to be installed)
-
-Run ```python installer.py```
+4. Run: ```python app.py```
