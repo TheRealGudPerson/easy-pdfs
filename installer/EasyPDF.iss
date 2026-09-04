@@ -12,7 +12,12 @@ AppName={#MyAppName}
 AppVersion={#AppVersion}
 AppPublisher={#MyAppPublisher}
 
-DefaultDirName={autopf}\EasyPDF
+; Install per-user instead of requiring administrator privileges.
+PrivilegesRequired=lowest
+
+; Install into the current user's Local AppData.
+DefaultDirName={localappdata}\Programs\EasyPDF
+
 DefaultGroupName=EasyPDF
 
 OutputDir=output
@@ -23,6 +28,7 @@ SolidCompression=yes
 
 WizardStyle=modern
 
+; 64-bit Windows
 ArchitecturesAllowed=x64
 ArchitecturesInstallIn64BitMode=x64
 

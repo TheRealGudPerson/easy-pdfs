@@ -62,7 +62,7 @@ else:
         debug=False,
         bootloader_ignore_signals=False,
         strip=False,
-        upx=True,
+        upx=False,
         console=False,
         disable_windowed_traceback=False,
         argv_emulation=False,
